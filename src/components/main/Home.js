@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react'
 
 import { List } from '@mui/material'
 
+import CreateTest from '../CreateTest'
+
 function Home() {
   const API_URL = process.env.REACT_APP_API_URL
   const [test, setTest] = useState([])
@@ -76,6 +78,7 @@ function Home() {
             overflow: 'auto',
             bgcolor: 'background.paper',
             px: 2,
+            my: 2
           }}
         >
           {test.map((i) => (
@@ -88,6 +91,7 @@ function Home() {
         </List>
       )}
 
+      <CreateTest onInsert={fetchTest} />
     </div>
   )
 }

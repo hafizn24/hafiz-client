@@ -14,12 +14,6 @@ const font = "'Inter', sans-serif"
 const theme = createTheme({
   palette: {
     mode: 'dark',
-    primary: {
-      main: '#8F329D',
-    },
-    secondary: {
-      main: '#7e57c2',
-    },
     background: {
       default: '#141414',
       paper: '#6c6c6cff',
