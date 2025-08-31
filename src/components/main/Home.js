@@ -3,8 +3,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { List } from '@mui/material'
 
 function Home() {
-  // const API_URL = process.env.REACT_APP_API_URL
-  const API_URL = 'https://hafiz-server.onrender.com'
+  const API_URL = process.env.REACT_APP_API_URL
   const [test, setTest] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
