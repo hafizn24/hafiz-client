@@ -12,7 +12,7 @@ function Home() {
   const fetchTest = async () => {
     try {
       setLoading(false)
-      const response = await fetch(`${API_URL}api/test`)
+      const response = await fetch(`${API_URL}/api/test`)
       const result = await response.json()
 
       if (result.success) {
