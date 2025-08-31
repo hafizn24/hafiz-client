@@ -43,7 +43,13 @@ function CreateTest({ onInsert }) {
                 onChange={(e) => setInput(e.target.value)}
             />
             <br />
-            <Button type='submit'>submit</Button>
+            <Button
+                type='submit'
+                variant="contained"
+                sx = {{my:1}}
+            >
+                submit
+            </Button>
         </Box>
     )
 }

@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react'
 
 import { List } from '@mui/material'
 
-import CreateTest from '../CreateTest'
+import CreateTest from '../functions/CreateTest'
+import DeleteTest from '../functions/DeleteTest'
 
 function Home() {
   const API_URL = process.env.REACT_APP_API_URL
@@ -70,25 +71,28 @@ function Home() {
       )}
 
       {!loading && !error && (
-        <List
-          sx={{
-            width: '100%',
-            maxWidth: 220,
-            maxHeight: 100,
-            overflow: 'auto',
-            bgcolor: 'background.paper',
-            px: 2,
-            my: 2
-          }}
-        >
-          {test.map((i) => (
-            <div key={i.id}>
-              <small>Value: {i.value}</small>
-              <br />
-              <small>Created: {new Date(i.created_at).toLocaleDateString()}</small>
-            </div>
-          ))}
-        </List>
+        <>
+          <List
+            sx={{
+              width: '100%',
+              maxWidth: 220,
+              maxHeight: 100,
+              overflow: 'auto',
+              bgcolor: 'background.paper',
+              px: 2,
+              my: 2
+            }}
+          >
+            {test.map((i) => (
+              <div key={i.id}>
+                <small>Value: {i.value}</small>
+                <br />
+                <small>Created: {new Date(i.created_at).toLocaleDateString()}</small>
+              </div>
+            ))}
+          </List>
+          <DeleteTest onDelete={fetchTest} />
+        </>
       )}
 
       <CreateTest onInsert={fetchTest} />
