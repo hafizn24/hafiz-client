@@ -10,25 +10,28 @@ function Home() {
   const [error, setError] = useState(null)
 
   const fetchTest = async () => {
+    setLoading(false)
+
     try {
-      setLoading(false)
       const response = await fetch(`${API_URL}/api/test`)
       const result = await response.json()
 
       if (result.success) {
         setTest(result.data)
-      } else {
-        setError(result.error)
       }
+
     } catch (err) {
-      setError(err)
+      setError("error")
     } finally {
       setLoading(false)
     }
   }
 
   useEffect(() => {
-    fetchTest()
+    const controller = new AbortController()
+    fetchTest(controller.signal)
+    return () => controller.abort()
+
   }, [])
 
   if (loading) {
