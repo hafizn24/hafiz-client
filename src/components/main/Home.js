@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-import { List } from '@mui/material'
+import { List, Grid } from '@mui/material'
 
 import CreateTest from '../functions/CreateTest'
 import DeleteTest from '../functions/DeleteTest'
+import LoginGithub from '../functions/LoginGithub'
 
 function Home() {
   const API_URL = process.env.REACT_APP_API_URL
@@ -50,7 +51,17 @@ function Home() {
 
   return (
     <div>
-      <h3>Home</h3>
+      <Grid
+        container
+        direction="row"
+        sx={{
+          justifyContent: "space-between",
+          alignItems: "flex-start",
+        }}
+      >
+        <h3>Home</h3>
+        <LoginGithub />
+      </Grid>
       <p>Testing data fetching 🗃️</p>
       <p>List of data from <code>test table</code></p>
 

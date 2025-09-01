@@ -6,7 +6,7 @@ function DeleteTest({ onDelete }) {
 
     const deleteData = async () => {
         try {
-            const response = await fetch(`${API_URL}/api/test/delete`,{
+            const response = await fetch(`${API_URL}/api/test/delete`, {
                 method: 'DELETE'
             })
             const result = await response.json()
@@ -21,15 +21,13 @@ function DeleteTest({ onDelete }) {
         }
     }
     return (
-        <>
-            <Button
-                variant="contained"
-                color="error"
-                onClick={() => deleteData()}
-            >
-                Delete Latest
-            </Button>
-        </>
+        <Button
+            variant="contained"
+            color="error"
+            onClick={() => deleteData()}
+        >
+            Delete Latest
+        </Button>
     )
 }
 

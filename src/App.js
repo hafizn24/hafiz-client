@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Layout from './components/Layout';
 import Home from './components/main/Home';
+import Cart from './components/main/Cart';
 
 const font = "'Inter', sans-serif"
 
@@ -32,6 +33,7 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/cart" element={<Cart />} />
           </Routes>
         </Layout>
       </BrowserRouter>
