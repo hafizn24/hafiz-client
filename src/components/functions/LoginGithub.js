@@ -6,11 +6,12 @@ import { useNavigate } from 'react-router-dom'
 function LoginGithub() {
     const navigate = useNavigate()
     const loginGithub = async () => {
+        console.log(process.env.REACT_APP_REDIRECT_URL)
         try {
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: 'github',
                 options: {
-                    redirectTo: `${window.location.origin}/cart`,
+                    redirectTo: `${process.env.REACT_APP_REDIRECT_URL}/cart`,
                 },
             })
         } catch (err) {
