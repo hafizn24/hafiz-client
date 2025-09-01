@@ -1,16 +1,16 @@
 import { React } from 'react'
 import { Button } from '@mui/material'
 import { supabase } from '../functions/supabase'
+import { useNavigate } from 'react-router-dom'
 
 function LoginGithub() {
+    const navigate = useNavigate()
     const loginGithub = async () => {
         try {
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: 'github',
-                options: {
-                    redirectTo: `${window.location.origin}/cart`,
-                },
             })
+            navigate('/cart')
         } catch (err) {
             console.log(err)
             alert('Error occured')
