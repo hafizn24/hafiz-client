@@ -9,8 +9,10 @@ function LoginGithub() {
         try {
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: 'github',
+                options: {
+                    redirectTo: `${window.location.origin}/cart`,
+                },
             })
-            navigate('/cart')
         } catch (err) {
             console.log(err)
             alert('Error occured')

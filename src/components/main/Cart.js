@@ -3,46 +3,57 @@ import { Button } from '@mui/material'
 import { supabase } from '../functions/supabase'
 import { useNavigate } from 'react-router-dom'
 
+import LoginGithub from '../functions/LoginGithub'
+
 function Cart() {
     const [user, setUser] = useState(null)
     const navigate = useNavigate()
 
     const logout = async () => {
-        const { error } = await supabase.auth.signOut()
-        if (!error) {
-            localStorage.clear()
-            sessionStorage.clear()
-            navigate('/')
+        try {
+            const { error } = await supabase.auth.signOut()
+            if (!error) {
+                navigate('/')
+            }
+
+        } catch (error) {
+            alert('Error occured')
+        }
+    }
+
+    const checkUser = async () => {
+        try {
+            const { data, error } = await supabase.auth.getUser()
+            setUser(data.user)
+        } catch (error) {
+            setUser(null)
+            alert('Error occured')
         }
     }
 
     useEffect(() => {
-        const checkUser = async () => {
-            try {
-                const { data, error } = await supabase.auth.getUser()
-            } catch (error) {
-                alert('Error occured')
-            }
-
-            const { data, error } = await supabase.auth.getUser()
-            if (!data.user) {
-                const { error } = await supabase.auth.signInWithOAuth({
-                    provider: 'github',
-                })
-            }
-        }
-
         checkUser()
-    }, [navigate])
+    }, [])
     return (
+
+
         <div>
-            <Button
-                variant="contained"
-                onClick={logout}
-                sx={{ my: 2 }}
-            >
-                Logout
-            </Button>
+            {!user && (
+                <>
+                    <h3>Only user can access here</h3>
+                    <p>Please Login</p>
+                    <LoginGithub />
+                </>
+            )}
+            {user && (
+                <Button
+                    variant="contained"
+                    onClick={logout}
+                    sx={{ my: 2 }}
+                >
+                    Logout
+                </Button>
+            )}
         </div>
     )
 }
