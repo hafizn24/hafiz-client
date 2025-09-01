@@ -11,7 +11,7 @@ function LoginGithub() {
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: 'github',
                 options: {
-                    redirectTo: `${process.env.REACT_APP_REDIRECT_URL}/cart`,
+                    redirectTo: `${process.env.REACT_APP_REDIRECT_URL}cart`,
                 },
             })
         } catch (err) {
